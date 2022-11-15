@@ -13,6 +13,12 @@ if __name__ == '__main__':
         help='original data file must be located in same directory'
     )
     parser.add_argument(
+        '--save_path',
+        type=str,
+        default='',
+        help='original data file must be located in same directory'
+    )
+    parser.add_argument(
         '--column_name',
         type=str,
         default='',
@@ -69,8 +75,8 @@ if __name__ == '__main__':
         data.loc[i, args.column_name] = new_sent
         
     # 데이터 저장
-    data.to_csv(f'./{args.file_name}_{args.augment_size}_{args.typo_ratio}_{args.strength}.csv',
-                index=False, encoding='utf-8-sig')
+    data.to_csv(f'./{args.save_path}{args.file_name}_{args.augment_size}_{args.typo_ratio}_{args.strength}.tsv',
+                index=False, encoding='utf-8-sig',sep='\t')
     print(f'augment_size = {args.augment_size}')
     print(f'typo_ratio   = {args.typo_ratio}')
     print(f'strength     = {args.strength}')
